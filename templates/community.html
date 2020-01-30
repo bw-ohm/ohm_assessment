@@ -1,0 +1,67 @@
+{% extends "base_map.html" %}
+
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="/css/webflow_base.css">
+
+    <style>
+	#community-table {
+	    border: 3px solid grey;
+	    border-radius: 15px;
+	    overflow: hidden;
+	    text-align: center;
+	    font-weight: bold;
+	}
+
+	.community-row {
+	    height: 5em;
+	    display: flex;
+	align-items: center;
+	}
+
+	.community-row:nth-child(odd) {
+	    background-color: lightgrey;
+	}
+
+	.community-row:nth-child(even) {
+	    background-color: white;
+	}
+
+    </style>
+
+{% endblock %}
+
+{% block body %}
+
+    <div id="container" class="container">
+        <div id="top-spacer">&nbsp;</div>
+
+        <div class="row">
+                    <h1>Community</h1>
+		    <div id="community-table">
+                    {% for user in result %}
+		        <div class="row community-row">
+		            <div class="col-md-3">
+			        {{ user.display_name }}
+			    </div>
+			    <div class="col-md-3">
+			        {{ user.tier }}
+			    </div>
+			    <div class="col-md-3">
+			        {{ user.point_balance|int }}
+			    </div>
+			    <div class="col-md-3">
+			        {% if user.phones %}
+				{% set phones = user.phones.split(',') %}
+			        {% for phone in phones %}
+				    {{ phone }}<br />
+				{% endfor %}
+				{% endif %}
+			    </div>
+			</div>
+		    {% endfor %}
+		    </div>
+        </div>
+
+    </div>
+
+{% endblock %}
