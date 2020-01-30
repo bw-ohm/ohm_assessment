@@ -23,6 +23,6 @@ class OhmTestCase(TestCase):
         return app
 
     def tearDown(self):
-        pass
+        self.chuck.set_tier("Carbon")
 
 
